@@ -1,0 +1,82 @@
+
+<div class="sheet-root">
+
+    <div class="top-panel">
+        <input type="text" placeholder="Character Name">
+        
+        <div>
+            <div>
+                <input type="text" placeholder="Class and Level">
+                <input type="text" placeholder="Background">
+                <input type="text" placeholder="Player Name">
+            </div>
+
+            <div>
+                <input type="text" placeholder="Race">
+                <input type="text" placeholder="Alignment">
+                <input type="text" placeholder="Experience Points">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="left-column">
+
+        <div class="left-column-top">
+
+            <div class="attributes-panel">
+
+                <app-attribute [character]="character" attribute="strength"></app-attribute>
+                <app-attribute [character]="character" attribute="dexterity"></app-attribute>
+                <app-attribute [character]="character" attribute="constitution"></app-attribute>
+                <app-attribute [character]="character" attribute="intelligence"></app-attribute>
+                <app-attribute [character]="character" attribute="wisdom"></app-attribute>
+                <app-attribute [character]="character" attribute="charisma"></app-attribute>
+    
+            </div>
+    
+            <div>
+    
+                <div class="card">
+
+                    <app-derived-stat [character]="character" [isSave]="true" key="strength"></app-derived-stat>
+                    <app-derived-stat [character]="character" [isSave]="true" key="dexterity"></app-derived-stat>
+                    <app-derived-stat [character]="character" [isSave]="true" key="constitution"></app-derived-stat>
+                    <app-derived-stat [character]="character" [isSave]="true" key="intelligence"></app-derived-stat>
+                    <app-derived-stat [character]="character" [isSave]="true" key="wisdom"></app-derived-stat>
+                    <app-derived-stat [character]="character" [isSave]="true" key="charisma"></app-derived-stat>
+                    <span class="bold-text">Saving Throws</span>
+                </div>
+    
+                <div class="card">
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <app-derived-stat></app-derived-stat>
+                    <span class="bold-text">Skills</span>
+                </div>
+    
+            </div>
+
+        </div>
+    
+        <div class="card proficiencies-panel">
+        </div>
+
+    </div>
+
+</div>

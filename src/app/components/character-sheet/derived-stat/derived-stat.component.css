@@ -1,0 +1,11 @@
+.derived-stat{
+    min-width: 180px;
+    margin-left: 5%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.number-display{
+    border-bottom: 1px solid lightgrey;
+    width: 15px;
+}

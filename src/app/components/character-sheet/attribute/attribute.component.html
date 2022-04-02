@@ -1,0 +1,5 @@
+<div class="attribute">
+    <span class="bold-text">{{title}}</span>
+    <input type="number" [(ngModel)]="score" (change)="updateAttribute()">
+    <span>{{_attribute.getModifier()}}</span>
+</div>
