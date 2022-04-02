@@ -1,5 +1,5 @@
 <div class="derived-stat">
-    <input type="checkbox">
+    <app-proficiency-toggle [(proficiencyMultiplier)]="stat.proficiencyMultiplier" (proficiencyMultiplierChange)="logProficiencyChange()"></app-proficiency-toggle>
     <div class="number-display">{{getScore()}}</div>
     <div>{{title}}</div>
 </div>

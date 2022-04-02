@@ -164,6 +164,7 @@ export class Character{
     public skills: any;
     public saves: any;
     public characterBio: characterBio;
+    public proficiencyBonus: number;
 
     private defaultAttributes:any = {
         strength: new Attribute("strength", 10 , []),
@@ -187,6 +188,7 @@ export class Character{
         this.attributes = Object.assign({}, this.defaultAttributes);
         this.skills = this.buildDefaultSkills(this.attributes);
         this.saves = this.buildDefaultSaves(this.attributes);
+        this.proficiencyBonus = 2;
     }
 
     private buildDefaultSkills(attributes:any){

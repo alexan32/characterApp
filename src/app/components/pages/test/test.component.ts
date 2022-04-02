@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Character } from 'src/app/models/character';
 
 @Component({
   selector: 'app-test',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
-  constructor() { }
+  character:Character = new Character();
+
+  constructor() { 
+
+  }
 
   ngOnInit(): void {
   }

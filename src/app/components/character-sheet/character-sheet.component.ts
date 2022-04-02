@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Character } from 'src/app/models/character';
 
 
@@ -10,7 +10,7 @@ import { Character } from 'src/app/models/character';
 })
 export class CharacterSheetComponent implements OnInit {
 
-  character:Character = new Character();
+  @Input() character:Character;
 
   constructor() { 
     

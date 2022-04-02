@@ -7,6 +7,8 @@ import { TestComponent } from './components/pages/test/test.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
 import { AttributeComponent } from './components/character-sheet/attribute/attribute.component';
 import { DerivedStatComponent } from './components/character-sheet/derived-stat/derived-stat.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProficiencyToggleComponent } from './components/character-sheet/proficiency-toggle/proficiency-toggle.component';
 
 const routes: Routes = [
   {path: 'test', component:TestComponent}
@@ -18,12 +20,14 @@ const routes: Routes = [
     TestComponent,
     CharacterSheetComponent,
     AttributeComponent,
-    DerivedStatComponent
+    DerivedStatComponent,
+    ProficiencyToggleComponent
   ],
   imports: [ 
     BrowserModule, 
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   exports: [RouterModule],
   providers: [],

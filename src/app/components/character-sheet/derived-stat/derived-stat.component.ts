@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Character } from 'src/app/models/character';
+import { Character, DerivedStat } from 'src/app/models/character';
 
 @Component({
   selector: 'app-derived-stat',
@@ -8,10 +8,11 @@ import { Character } from 'src/app/models/character';
 })
 export class DerivedStatComponent implements OnInit {
 
-  @Input() character:Character;
+  @Input() character:Character = null;
   @Input() isSave:boolean = false;
   @Input() key: string = "";
 
+  stat:DerivedStat = null;
   title:string = "";
 
   constructor() { }
@@ -19,19 +20,19 @@ export class DerivedStatComponent implements OnInit {
   ngOnInit(): void {
     let temp = this.key.split("_").join(" ");
     this.title = temp.charAt(0).toUpperCase() + temp.slice(1);
-    console.log(this.character);
+    if(this.isSave && this.character.saves.hasOwnProperty(this.key)){
+      this.stat = this.character.saves[this.key];
+    }else if(this.character.skills.hasOwnProperty(this.key)){
+      this.stat = this.character.skills[this.key];
+    }
   }
 
   getScore(){
-    if(!this.character){
-      return 0;
-    }
-    if(this.isSave && this.character.saves.hasOwnProperty(this.key)){
-      return this.character.saves[this.key].getScore(0);
-    }else if(this.character.skills.hasOwnProperty(this.key)){
-      return this.character.skills[this.key].getScore(0);
-    }
-    return 0;
+    return this.stat.getScore(this.character.proficiencyBonus);
+  }
+
+  logProficiencyChange(){
+    console.log(`${this.title} proficiency multiplier: ${this.stat.proficiencyMultiplier}`)
   }
 
 }
