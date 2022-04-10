@@ -1,0 +1,12 @@
+.component-root{
+    display: flex;
+    justify-content: center;
+}
+
+td{
+    text-align: left;
+}
+
+th{
+    column-span: all;
+}

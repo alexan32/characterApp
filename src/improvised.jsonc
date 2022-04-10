@@ -1,0 +1,36 @@
+{
+
+
+    "characterMetaData": {
+        "hp": 0,
+        "maxHp": 0,
+        "tempHp": 0,
+        "proficiencyBonus": 2,
+        "baseStrength": 10,
+        "baseDexterity": 10,
+        "baseConsitution": 10,
+        "baseIntelligence": 10,
+        "baseWisdom": 10,
+        "baseCharisma": 10
+    },
+
+    // key is accessable to users, but function cannot be updated
+    "hiddenFunctions": {
+        "str": "$floor((10 - strength) / 2)",
+        "strength": "baseStrength + $getBonus(strength)"
+    },
+
+    // present by default, can be overwritten using custom functions but not deleted
+    "defaultFunctions": {
+        "ac": "10 + dex + $getBonus(armorClass)",
+        "armorClass": "ac",
+        "spellSave": "8 + prof + spellModifier",
+        "spellAttack": "1d20 + prof + spellModifier",
+        "spellModifier": "cha"
+    },
+
+    // user defined functions. Either new functions or functions that overwrite the default
+    "customFunctions": {
+
+    }
+}

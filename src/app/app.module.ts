@@ -9,6 +9,9 @@ import { AttributeComponent } from './components/character-sheet/attribute/attri
 import { DerivedStatComponent } from './components/character-sheet/derived-stat/derived-stat.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProficiencyToggleComponent } from './components/character-sheet/proficiency-toggle/proficiency-toggle.component';
+import { HitDiceComponent } from './components/character-sheet/hit-dice/hit-dice.component';
+import { DeathSavesComponent } from './components/character-sheet/death-saves/death-saves.component';
+import { CharacterRollsComponent } from './components/character-sheet/character-rolls/character-rolls.component';
 
 const routes: Routes = [
   {path: 'test', component:TestComponent}
@@ -21,7 +24,10 @@ const routes: Routes = [
     CharacterSheetComponent,
     AttributeComponent,
     DerivedStatComponent,
-    ProficiencyToggleComponent
+    ProficiencyToggleComponent,
+    HitDiceComponent,
+    DeathSavesComponent,
+    CharacterRollsComponent
   ],
   imports: [ 
     BrowserModule, 

@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+input[type=number]{
+    width: 30px;
+}
+
 .bold-text{
     font-weight: bold;
 }
@@ -29,6 +33,17 @@
     justify-content: flex-start;
 }
 
+.center-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.center-column-top{
+    min-width: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
 /* Attributes */
 
 .attributes-panel{
@@ -45,6 +60,14 @@
     border: 1px solid black;
     border-radius: 3px;
     padding: 10px 0;
+}
+
+/* AC, initiative, speed */
+.scoreBox{
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px 0;
+    width: 55px;
 }
 
 /* proficiencies */

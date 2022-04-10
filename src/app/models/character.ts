@@ -51,7 +51,7 @@ class ObjectWithBonus{
 
 }
 
-
+//Ability Scores
 export class Attribute extends ObjectWithBonus{
     public base:number;
     public overwrite:any = null;
@@ -110,7 +110,7 @@ export class DerivedStat extends ObjectWithBonus{
     public proficiencyMultiplier;
     public attribute:Attribute;
 
-    constructor(attribute:Attribute, bonuses:bonus[], proficiencyMultiplier:number, overwrite?:number){
+    constructor(attribute:Attribute, bonuses:bonus[], proficiencyMultiplier:number, overwrite?:string){
         super();
         this.attribute = attribute;
         this.bonuses = bonuses;
@@ -148,16 +148,16 @@ export class DerivedStat extends ObjectWithBonus{
         }
     }
 
-}
+    toRoll(){
+        let roll = `1d20 + (${this.proficiencyMultiplier} * proficiencyBonus)`;
+        let bonus = this.getBonus();
+        if(bonus !== 0){
+            roll += " " + String(bonus);
+        }
+        return roll
+    }
 
-const attributeOrder:string[] = [
-    "strength",
-    "dexterity",
-    "constitution",
-    "intelligence",
-    "wisdom",
-    "charisma"
-];
+}
 
 export class Character{
     public attributes:any;
@@ -165,6 +165,12 @@ export class Character{
     public saves: any;
     public characterBio: characterBio;
     public proficiencyBonus: number;
+    public movementSpeed: number;
+    public armorClass: number;
+    public initiative: number;
+    public hitPoints: number;
+    public maxHitPoints: number;
+    public temporaryHitPoints: number;
 
     private defaultAttributes:any = {
         strength: new Attribute("strength", 10 , []),
@@ -188,7 +194,17 @@ export class Character{
         this.attributes = Object.assign({}, this.defaultAttributes);
         this.skills = this.buildDefaultSkills(this.attributes);
         this.saves = this.buildDefaultSaves(this.attributes);
+        
+        // flat numbers, no calculations
         this.proficiencyBonus = 2;
+        this.movementSpeed = 30;
+        this.hitPoints = 0;
+        this.maxHitPoints = 0;
+        this.temporaryHitPoints = 0;
+
+        // may need to update
+        this.armorClass = 10;
+        this.initiative = 0;
     }
 
     private buildDefaultSkills(attributes:any){

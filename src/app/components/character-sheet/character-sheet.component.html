@@ -36,6 +36,12 @@
             </div>
     
             <div>
+                <div class="card">
+                    <span>
+                        Proficiency
+                        <input type="number" [(ngModel)]="character.proficiencyBonus">
+                    </span>
+                </div>
     
                 <div class="card">
 
@@ -70,6 +76,62 @@
                     <span class="bold-text">Skills</span>
                 </div>
     
+            </div>
+
+            <div class="center-column">
+
+                <!-- AC, Initiative, Speed -->
+                <div class="center-column-top">
+                    <div class="scoreBox">
+                        <div>
+                            <input type="number" [(ngModel)]="character.armorClass">
+                            <div>AC</div>
+                        </div>
+                    </div>
+                    <div class="scoreBox">
+                        <div>
+                            <input type="number" [(ngModel)]="character.initiative">
+                            <div>Initiative</div>
+                        </div>
+                    </div>
+                    <div class="scoreBox">
+                        <div>
+                            <input type="number" [(ngModel)]="character.movementSpeed">
+                            <div>Speed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hit points -->
+                <div class="card">
+                    <div>
+                        <span>
+                            Hitpoints:
+                            <input type="number" [(ngModel)]="character.hitPoints"> 
+                            / 
+                            <input type="number" [(ngModel)]="character.maxHitPoints">
+                        </span>
+                    </div>
+                    <div>
+                        <span>
+                            Temporary Hitpoints:
+                            <input type="number" [(ngModel)]="character.temporaryHitPoints">
+                        </span>
+                    </div>
+                </div>
+
+                <!-- <div class="card">
+                    <app-hit-dice [character]="character"></app-hit-dice>
+                </div>
+
+                <div class="card">
+                    <app-death-saves [character]="character"></app-death-saves>
+                </div> -->
+
+                <div class="card">
+                    <app-character-rolls [character]="character"></app-character-rolls>
+                </div>
+
             </div>
 
         </div>
