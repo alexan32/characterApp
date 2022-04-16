@@ -1,5 +1,5 @@
-*{
-    font-size: 10px;
+.functionForm{
+    display: flex;
 }
 
 table{
@@ -17,7 +17,10 @@ td{
     margin: 0px;
 }
 
-.key{
-    text-decoration: underline;
-    padding-left: 5px;
+#key-field{
+    width: 150px;
+}
+
+#function-field{
+    width: 250px;
 }

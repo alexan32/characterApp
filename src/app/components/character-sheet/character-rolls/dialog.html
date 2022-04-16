@@ -1,0 +1,19 @@
+<table>
+    <ng-container *ngFor="let _key of keys">
+        <tr *ngIf="_key != key">
+            <td class="key">{{_key}}:</td>
+            <td>{{customRolls[_key]}}</td>
+        </tr>
+    </ng-container>
+</table>
+<br>
+<span class="functionForm">
+    <input id="key-field" type="text" [(ngModel)]="tempKey" (ngModelChange)="updateKey($event)">
+    = 
+    <input id="function-field" type="text" [(ngModel)]="tempFunc" (ngModelChange)="updateFunc($event)">
+</span>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

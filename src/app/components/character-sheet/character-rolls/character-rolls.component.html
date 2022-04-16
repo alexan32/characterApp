@@ -1,1 +1,8 @@
-
+<div class="component-root">
+    <table>
+        <tr *ngFor="let key of keys" (click)="openDialog(key)">
+            <td class="key">{{key}}:</td>
+            <td>{{customRolls[key]}}</td>
+        </tr>
+    </table>
+</div>
