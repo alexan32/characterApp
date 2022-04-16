@@ -26,6 +26,13 @@ export interface bonus{
     id?:string                      //Id is optional value used to associate bonus with items, effects, etc.
 }
 
+const defaultCustomRolls = {
+    "spellattack": "1d20 + int + prof",
+    "spellsave": "8 + int + prof",
+    "unarmed": "1d20 + str",
+    "unarmeddmg" : "1 + kh1(0, str)"
+}
+
 
 class ObjectWithBonus{
     public bonuses:bonus[] = [];
@@ -97,10 +104,6 @@ export class Attribute extends ObjectWithBonus{
         return Math.floor((this.getScore() - 10) / 2);
     }
 
-    setByTotal(total:number){
-
-    }
-
 }
 
 
@@ -131,25 +134,13 @@ export class DerivedStat extends ObjectWithBonus{
         return 10 + this.getScore(proficiency);
     }
 
-    toSaveObject(){
-        return {
-            proficiencyMultiplier: this.proficiencyMultiplier,
-            bonuses: this.bonuses,
-            overwrite: this.overwrite
+    toRoll(proficiency){
+        let roll = `1d20`;
+        if(this.proficiencyMultiplier !== 0){
+            roll += ` + (${this.proficiencyMultiplier} * ${proficiency})`
+        }else{
+            
         }
-    }
-
-    toSkillObject(){
-        return {
-            proficiencyMultiplier: this.proficiencyMultiplier,
-            bonuses: this.bonuses,
-            overwrite: this.overwrite,
-            attribute: this.attribute.name
-        }
-    }
-
-    toRoll(){
-        let roll = `1d20 + (${this.proficiencyMultiplier} * proficiencyBonus)`;
         let bonus = this.getBonus();
         if(bonus !== 0){
             roll += " " + String(bonus);
@@ -171,6 +162,7 @@ export class Character{
     public hitPoints: number;
     public maxHitPoints: number;
     public temporaryHitPoints: number;
+    public customRolls: any;
 
     private defaultAttributes:any = {
         strength: new Attribute("strength", 10 , []),
@@ -189,12 +181,20 @@ export class Character{
         experience:0
     }
 
+    private defaultCustomRolls = {
+        "spellattack": "1d20 + int + prof",
+        "spellsave": "8 + int + prof",
+        "unarmed": "1d20 + str",
+        "unarmeddmg" : "1 + kh1(0, str)"
+    }
+
     constructor(){
         this.characterBio = Object.assign({}, this.defaultCharacterBio);
         this.attributes = Object.assign({}, this.defaultAttributes);
         this.skills = this.buildDefaultSkills(this.attributes);
         this.saves = this.buildDefaultSaves(this.attributes);
-        
+        this.customRolls = this.defaultCustomRolls;
+
         // flat numbers, no calculations
         this.proficiencyBonus = 2;
         this.movementSpeed = 30;
@@ -242,4 +242,7 @@ export class Character{
         }
     }
 
+    toSkillObject(){
+
+    }
 }
