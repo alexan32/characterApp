@@ -16,11 +16,20 @@ import { ProficiencyToggleComponent } from './components/character-sheet/profici
 import { HitDiceComponent } from './components/character-sheet/hit-dice/hit-dice.component';
 import { DeathSavesComponent } from './components/character-sheet/death-saves/death-saves.component';
 import { CharacterRollsComponent } from './components/character-sheet/character-rolls/character-rolls.component';
+import { RollEditorComponent } from './components/roll-editor/roll-editor.component'; 
 
 // Dialogs
-import { CharacterRollsDialog } from './components/character-sheet/character-rolls/character-rolls.component'; 
+import { CharacterRollsDialog } from './components/character-sheet/character-rolls/character-rolls.component';
+
 const routes: Routes = [
-  {path: 'test', component:TestComponent}
+  {
+    path: 'test', 
+    component:TestComponent
+  },
+  {
+    path: 'rolls',
+    component:RollEditorComponent
+  }
 ];
 
 @NgModule({
@@ -34,7 +43,8 @@ const routes: Routes = [
     HitDiceComponent,
     DeathSavesComponent,
     CharacterRollsComponent,
-    CharacterRollsDialog
+    CharacterRollsDialog,
+    RollEditorComponent
   ],
   imports: [ 
     BrowserModule, 

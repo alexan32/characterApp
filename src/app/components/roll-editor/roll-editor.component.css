@@ -1,0 +1,21 @@
+.buttonColumn{
+    width: 100px;
+}
+
+.button{
+    padding: 0 5px;
+    border: 1px solid;
+    background-color: lightgray;
+    border-radius: 3px;
+    margin-left: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.bottomRow{
+    display: flex;
+}
+
+table{
+    border: 1px solid;
+}
