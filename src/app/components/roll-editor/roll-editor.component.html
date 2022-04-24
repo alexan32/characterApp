@@ -1,39 +1,56 @@
-<table>
-    <tr *ngFor="let key of keys; let i = index" (mouseenter)="mouseIndex = i;" (mouseleave)="mouseIndex = -1">
-        
-        <ng-container *ngIf="editIndex != i">
-            <td>{{key}}</td>
-            <td>{{_rolls[key]}}</td>
-            <td class="buttonColumn">
-                <ng-container *ngIf="mouseIndex == i && editIndex == -1">
-                    <span class="button" (click)="editIndex = i; editRow(key)">
-                        Edit
-                    </span>
-                    <span class="button" (click)="deleteRow(key)">
-                        Delete
-                    </span>
+<div class="root">
+    <div class="top-panel">
+        <input type="text" [(ngModel)]="search" placeholder="Search..." (ngModelChange)="performSearch($event)">
+        <div class="message">{{validationMessage}}</div>
+    </div>
+    <div id="scroll" class="scroll">
+        <table>
+            <tr *ngFor="let key of keys; let i = index" (mouseenter)="mouseIndex = i;" (mouseleave)="mouseIndex = -1">
+                
+                <ng-container *ngIf="editIndex != i">
+                    <td>({{i+1}})</td>
+                    <td id="rollKey">{{key}}</td>
+                    <td>=</td>
+                    <td>{{_rolls[key]}}</td>
+                    <td class="buttonColumn">
+                        <ng-container *ngIf="mouseIndex == i && editIndex == -1">
+                            <span class="button" (click)="editIndex = i; editRow(key)">
+                                Edit
+                            </span>
+                            <span class="button" (click)="confirmDelete(key)">
+                                Delete
+                            </span>
+                        </ng-container>
+                    </td>
                 </ng-container>
-            </td>
-        </ng-container>
+        
+                <ng-container *ngIf="editIndex == i">
+                    <td>({{i+1}})</td>
+                    <td><input type="text" [(ngModel)]="editKey" (ngModelChange)="keyIsInvalid()"></td>
+                    <td>=</td>
+                    <td><input type="text" [(ngModel)]="editValue"></td>
+                    <td class="buttonColumn">
+                        <button [disabled]="keyValid" class="button" (click)="editIndex = -1; saveRow()">
+                            Save
+                        </button>
+                        <span class="button" (click)="editIndex = -1; cancel()">
+                            Cancel
+                        </span>
+                    </td>
+                </ng-container>
+            </tr>
+        </table>
+    </div>
+    <button [disabled]="editIndex != -1" class="large-btn" (click)="createNew()">
+        Create New
+    </button>
+    <div class="save-options">
+        <button [disabled]="editIndex != -1" class="large-btn" (click)="saveChanges()">
+            Save Changes
+        </button>
+        <button [disabled]="editIndex != -1" class="large-btn" (click)="revertChanges()">
+            Revert Changes
+        </button>
+    </div>
 
-        <ng-container *ngIf="editIndex == i">
-            <td><input type="text" [(ngModel)]="editKey"></td>
-            <td><input type="text" [(ngModel)]="editValue"></td>
-            <td class="buttonColumn">
-                <span class="button" (click)="editIndex = -1; saveRow()">
-                    Save
-                </span>
-                <span class="button" (click)="editIndex = -1">
-                    Cancel
-                </span>
-            </td>
-        </ng-container>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <div class="button" (click)="editIndex = -1">
-                Create New
-            </div>
-        </td>
-    </tr>
-</table>
+</div>

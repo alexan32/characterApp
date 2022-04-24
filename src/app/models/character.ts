@@ -247,7 +247,17 @@ export class Character{
     }    
 }
 
-export let characterData: any = {
+export interface CharacterData{
+    first: string,
+    last: string,
+    rolls: any,
+    counters: any,
+    articles: any
+    discordId?: any,
+    guildId?:any
+}
+
+export let characterData: CharacterData = {
     "first": "",
     "last": "",
     "discordId": "",

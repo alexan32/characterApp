@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs'
 
 // components
 import { TestComponent } from './components/pages/test/test.component';
@@ -20,6 +21,7 @@ import { RollEditorComponent } from './components/roll-editor/roll-editor.compon
 
 // Dialogs
 import { CharacterRollsDialog } from './components/character-sheet/character-rolls/character-rolls.component';
+import { HomeComponent } from './components/pages/home/home.component';
 
 const routes: Routes = [
   {
@@ -27,8 +29,13 @@ const routes: Routes = [
     component:TestComponent
   },
   {
-    path: 'rolls',
-    component:RollEditorComponent
+    path: 'home', 
+    component:HomeComponent
+  },
+  {
+    path: '', 
+    redirectTo: '/home', 
+    pathMatch: 'full' 
   }
 ];
 
@@ -44,14 +51,16 @@ const routes: Routes = [
     DeathSavesComponent,
     CharacterRollsComponent,
     CharacterRollsDialog,
-    RollEditorComponent
+    RollEditorComponent,
+    HomeComponent
   ],
   imports: [ 
     BrowserModule, 
     RouterModule.forRoot(routes),
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
   exports: [RouterModule],
   providers: [],
