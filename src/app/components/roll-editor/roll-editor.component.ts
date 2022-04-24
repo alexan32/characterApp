@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-roll-editor',
@@ -11,7 +11,7 @@ export class RollEditorComponent implements OnInit {
   editIndex = -1;
 
   isNew: boolean = false;
-  keyValid: boolean = false;
+  keyValid: boolean = true;
 
   keyUnderEdit: string = "";
   editKey: string = "";
@@ -30,6 +30,8 @@ export class RollEditorComponent implements OnInit {
     console.log("character rolls: ", this._rolls);
     this.refreshKeys()
   };
+
+  @Output() characterRollsChange = new EventEmitter<any>();
 
   constructor() { }
 
@@ -67,6 +69,11 @@ export class RollEditorComponent implements OnInit {
     this.editValue = this._rolls[this.editKey];
   }
 
+  cleanKey(){
+    this.editKey = this.editKey.split(" ").join("");
+    return this.editKey;
+  }
+
   saveRow(){
     delete this._rolls[this.keyUnderEdit];
     this._rolls[this.editKey] = this.editValue;
@@ -86,17 +93,21 @@ export class RollEditorComponent implements OnInit {
   }
 
   keyIsInvalid(){
-    this.keyValid = false;
+    this.keyValid = true;
     this.validationMessage = "";
+    this.cleanKey();
     if(this.editKey == ""){
+      this.keyValid = false;
       this.validationMessage = "Roll name cannot be blank."
+      console.warn(this.validationMessage);
       return;
     }
     if(this.keyUnderEdit != this.editKey && this.keys.indexOf(this.editKey) != -1){
+      this.keyValid = false;
       this.validationMessage = "Roll name already exists."
+      console.warn(this.validationMessage);
       return;
     }
-    this.keyValid = true;
   }
 
   cancel(){
@@ -104,6 +115,7 @@ export class RollEditorComponent implements OnInit {
     if(this.keyUnderEdit == "*TEMP*"){
       this.deleteRow("*TEMP*");
     }
+    this.keyValid = true;
   }
 
   performSearch(evt){
@@ -114,12 +126,15 @@ export class RollEditorComponent implements OnInit {
   saveChanges(){
     if(confirm("Are you sure you want to keep these changes?")){
       this.masterCopy = this._rolls;
+      this.characterRollsChange.emit(this.masterCopy);
     }
+    this.keyValid = true;
   }
 
   revertChanges(){
     if(confirm("Are you sure that you want to undo these changes?")){
       this._rolls = JSON.parse(JSON.stringify(this.masterCopy));
+      this.refreshKeys();
     }
   }
 }

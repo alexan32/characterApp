@@ -2,16 +2,20 @@
 
 <div *ngIf="!loaded" class="start-menu">
     <div class="button" (click)="openFile()">Open Existing</div>
-    <!-- <div>OR</div>
-    <div class="button" (click)="makeNew()">Create New</div> -->
+    <div>OR</div>
+    <div class="button" (click)="makeNew()">Create New</div>
 </div>
 
 <div *ngIf="loaded">
 
     <mat-tab-group>
+        <mat-tab label="Character Info">
+            <app-character-info [character]="character"></app-character-info>
+        </mat-tab>
+
         <mat-tab label="Roll Editor">
             <br>
-            <app-roll-editor [characterRolls]="character['rolls']"></app-roll-editor>
+            <app-roll-editor [(characterRolls)]="character['rolls']"></app-roll-editor>
         </mat-tab>
 
         <!-- <mat-tab label="Character Sheet">

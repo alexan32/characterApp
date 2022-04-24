@@ -30,7 +30,7 @@
                     <td>=</td>
                     <td><input type="text" [(ngModel)]="editValue"></td>
                     <td class="buttonColumn">
-                        <button [disabled]="keyValid" class="button" (click)="editIndex = -1; saveRow()">
+                        <button [disabled]="!keyValid" class="button" (click)="editIndex = -1; saveRow()">
                             Save
                         </button>
                         <span class="button" (click)="editIndex = -1; cancel()">
@@ -42,7 +42,7 @@
         </table>
     </div>
     <button [disabled]="editIndex != -1" class="large-btn" (click)="createNew()">
-        Create New
+        Create New Roll
     </button>
     <div class="save-options">
         <button [disabled]="editIndex != -1" class="large-btn" (click)="saveChanges()">

@@ -22,6 +22,7 @@ import { RollEditorComponent } from './components/roll-editor/roll-editor.compon
 // Dialogs
 import { CharacterRollsDialog } from './components/character-sheet/character-rolls/character-rolls.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { CharacterInfoComponent } from './components/pages/character-info/character-info.component';
 
 const routes: Routes = [
   {
@@ -52,7 +53,8 @@ const routes: Routes = [
     CharacterRollsComponent,
     CharacterRollsDialog,
     RollEditorComponent,
-    HomeComponent
+    HomeComponent,
+    CharacterInfoComponent
   ],
   imports: [ 
     BrowserModule, 
