@@ -1,0 +1,4 @@
+
+Building for github pages:
+
+ng build --base-href "https://alexan32.github.io/characterApp/"  
