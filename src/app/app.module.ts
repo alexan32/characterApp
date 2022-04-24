@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs'
 
 // components
 import { TestComponent } from './components/pages/test/test.component';
@@ -16,11 +17,27 @@ import { ProficiencyToggleComponent } from './components/character-sheet/profici
 import { HitDiceComponent } from './components/character-sheet/hit-dice/hit-dice.component';
 import { DeathSavesComponent } from './components/character-sheet/death-saves/death-saves.component';
 import { CharacterRollsComponent } from './components/character-sheet/character-rolls/character-rolls.component';
+import { RollEditorComponent } from './components/roll-editor/roll-editor.component'; 
 
 // Dialogs
-import { CharacterRollsDialog } from './components/character-sheet/character-rolls/character-rolls.component'; 
+import { CharacterRollsDialog } from './components/character-sheet/character-rolls/character-rolls.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { CharacterInfoComponent } from './components/pages/character-info/character-info.component';
+
 const routes: Routes = [
-  {path: 'test', component:TestComponent}
+  {
+    path: 'test', 
+    component:TestComponent
+  },
+  {
+    path: 'home', 
+    component:HomeComponent
+  },
+  {
+    path: '', 
+    redirectTo: '/home', 
+    pathMatch: 'full' 
+  }
 ];
 
 @NgModule({
@@ -34,14 +51,18 @@ const routes: Routes = [
     HitDiceComponent,
     DeathSavesComponent,
     CharacterRollsComponent,
-    CharacterRollsDialog
+    CharacterRollsDialog,
+    RollEditorComponent,
+    HomeComponent,
+    CharacterInfoComponent
   ],
   imports: [ 
     BrowserModule, 
     RouterModule.forRoot(routes),
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
   exports: [RouterModule],
   providers: [],
